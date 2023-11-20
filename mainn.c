@@ -1,4 +1,4 @@
-#include <stdio.h>
+f#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -17,7 +17,7 @@ void main (int argc, char *argv[]){
         }
         else {
             printf("\nEntrou222\n");
-            fseek(file, ftell(file)-1, SEEK_SET);
+            fseek(file, ftell(file), SEEK_SET);
             fscanf(file, "%m[^\n]", &dna);
             printf("%s\n", dna);
         }
