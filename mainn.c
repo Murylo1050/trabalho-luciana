@@ -35,9 +35,6 @@ void lerArquivo(char *path) {
     fclose(file);
 }
 
-void main (int argc, char *argv[]){
-    if(argc < 2)
-        printf("Ta faltando argumento, mano!\n");
-    else 
-        lerArquivo(argv[1]);
+void main (){
+
 }
