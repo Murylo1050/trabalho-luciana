@@ -34,5 +34,4 @@ void insereVirusNoFim(ListaVirus *listaVirus, Virus *noVirus);
 Virus* criaNoVirus();
 DnaAnimal* criaNoDnaAnimal();
 
-
 #endif

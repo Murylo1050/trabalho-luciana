@@ -76,7 +76,7 @@ typedef struct dna {
 
 */
 ListaVirus* leVirus(char* path){
-     FILE *file = fopen(path, "r");
+    FILE *file = fopen(path, "r");
     char teste = getc(file);
     char* dna = (char *)calloc(70,sizeof(char));
 
@@ -95,7 +95,7 @@ ListaVirus* leVirus(char* path){
             if( strcmp(temp,">EOF") == 0 ){
                 free(temp);
                 printf("Deu certo krl");
-                exit(1);
+                return lista;
             }else{
                 noVirus = criaNoVirus();
                 noVirus->identificador = temp;
@@ -158,7 +158,7 @@ ListaAnimal* leDNA(char *path) {
             if(strcmp(temp,">EOF") == 0 ) {
                 free(temp);
                 printf("Deu certo krl");
-                exit(1);
+                return lista;
             } else {
                 noAnimal = criaNoDnaAnimal();
                 noAnimal->identificador = temp;
@@ -305,7 +305,11 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
 }
 
 void main(int argc, char *argv[]) {
-    
+
+
+    printf("Olha 1: %s\n", argv[1]);
+    printf("Olha 2: %s\n", argv[2]);
+
     ListaAnimal* animais = leDNA(argv[1]);
     ListaVirus*  virus = leVirus(argv[2]);
     kmp(animais,virus); // dps colcoar o le dna e ler virus ai dentro
