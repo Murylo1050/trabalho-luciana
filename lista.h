@@ -10,6 +10,7 @@ typedef struct dna {
 } DnaAnimal;
 
 typedef struct listaAnimal{
+    int qtd;
     DnaAnimal* ini;
     DnaAnimal* fim;
 } ListaAnimal;
@@ -29,9 +30,9 @@ typedef struct listaVirus {
 ListaVirus* criaListaVirus();
 ListaAnimal* criaListaAnimal();
 void insereAnimalNoFim(ListaAnimal *listaAnimal, DnaAnimal *noAnimal); // mod
-void insereNoFim(ListaVirus *listaVirus, Virus *noVirus);
+void insereVirusNoFim(ListaVirus *listaVirus, Virus *noVirus);
 Virus* criaNoVirus();
 DnaAnimal* criaNoDnaAnimal();
-void leDNA(char *path);
+
 
 #endif

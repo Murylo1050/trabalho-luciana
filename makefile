@@ -4,7 +4,7 @@ all: teste
 	# rm -r main *.o #gambiarra pode apagar essa linha
 
 in: teste
-	./main input/dna.txt
+	./main input/dna.txt input/virus.txt
 	rm -r main *.o #gambiarra pode apagar essa linha
 
 debug: 

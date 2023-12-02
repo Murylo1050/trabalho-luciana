@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
-            "args": ["input/dna.txt"],
+            "args": ["input/dna.txt","input/virus.txt"],
             "miDebuggerPath": "/usr/bin/gdb",
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
