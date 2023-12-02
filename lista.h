@@ -4,7 +4,8 @@
 #include <stdio.h>
 
 typedef struct dna {
-    struct dna* prox; // Mod
+    struct dna* prox; 
+    int indice;
     char* identificador;
     char* dnaAnimal;
 } DnaAnimal;
@@ -27,11 +28,25 @@ typedef struct listaVirus {
     Virus* fim;
 } ListaVirus;
 
+
+/*
+Função: criarListaVirus
+
+Descrição:
+
+Entrada:
+
+Saída:
+
+*/
 ListaVirus* criaListaVirus();
+
+
 ListaAnimal* criaListaAnimal();
 void insereAnimalNoFim(ListaAnimal *listaAnimal, DnaAnimal *noAnimal); // mod
 void insereVirusNoFim(ListaVirus *listaVirus, Virus *noVirus);
 Virus* criaNoVirus();
 DnaAnimal* criaNoDnaAnimal();
+DnaAnimal* buscaIndice(ListaAnimal *listaAnimal, int indice);
 
 #endif

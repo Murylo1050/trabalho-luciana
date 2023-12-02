@@ -76,20 +76,20 @@ typedef struct dna {
 
 */
 ListaVirus* leVirus(char* path){
-    FILE *file = fopen(path, "r");
+    FILE *file = fopen(path, "r"); 
     char teste = getc(file);
     char* dna = (char *)calloc(70,sizeof(char));
 
-    char* temp;
+    char* temp; // Variável responsável por armazenar de forma temporária a primeira 
+                // linha do arquivo, e se ocorra, as concatenaçòes com as outras linhas.
 
     ListaVirus* lista = criaListaVirus();
     Virus* noVirus = NULL;
 
     while(teste != EOF) {
         if(teste == '>') {
-            //Armazena a linha referente ao código/nome do animal no ponteiro *animal
            
-            fseek(file, ftell(file)-1, SEEK_SET);
+            //fseek(file, ftell(file)-1, SEEK_SET);
             fscanf(file, "%m[^\n]", &temp);
             
             if( strcmp(temp,">EOF") == 0 ){
@@ -98,7 +98,8 @@ ListaVirus* leVirus(char* path){
                 return lista;
             }else{
                 noVirus = criaNoVirus();
-                noVirus->identificador = temp;
+                noVirus->identificador = (char *)calloc(71,sizeof(char));
+                strcpy(noVirus->identificador,temp);
                 printf("%s\n", noVirus->identificador);
                 free(temp);
             }
@@ -108,11 +109,9 @@ ListaVirus* leVirus(char* path){
         }
         else {
             if(teste == '\n') { 
-                fseek(file, ftell(file)+1, SEEK_SET); // Caso o teste esteja apontando para a quebra de linha o fseek fará que o mesmo  
-                                                        // aponte para o próximo endereço do arquivo.                                                                   
+                fseek(file, ftell(file)+1, SEEK_SET); 
+
             } else {
-                // Armazena a linha referente ao dna do animal no ponteiro *dna. 
-                // A cada iteração do while uma linha é armazenada no ponteiro.
 
                 //fseek(file, ftell(file), SEEK_SET);
                 fscanf(file, "%m[^\n]", &noVirus->dnaVirus);
@@ -136,7 +135,7 @@ ListaVirus* leVirus(char* path){
 }
 
 
-ListaAnimal* leDNA(char *path) {
+ListaAnimal* leAnimal(char *path) {
     FILE *file = fopen(path, "r");
     char teste = getc(file);
     char* dna;
@@ -147,11 +146,10 @@ ListaAnimal* leDNA(char *path) {
     DnaAnimal* noAnimal = NULL;
 
     while(teste != EOF) {
-        lista->qtd++;
         if(teste == '>') {
             //Armazena a linha referente ao código/nome do animal no ponteiro *animal
            
-            fseek(file, ftell(file)-1, SEEK_SET);
+            //fseek(file, ftell(file)-1, SEEK_SET);
             fscanf(file, "%m[^\n]", &temp);
             dna = (char *)calloc(70,sizeof(char));
             
@@ -161,7 +159,9 @@ ListaAnimal* leDNA(char *path) {
                 return lista;
             } else {
                 noAnimal = criaNoDnaAnimal();
-                noAnimal->identificador = temp;
+
+                noAnimal->identificador = (char *)calloc(71,sizeof(char));
+                strcpy(noAnimal->identificador,temp);
                 printf("%s\n", noAnimal->identificador);
                 free(temp);
             } 
@@ -192,6 +192,7 @@ ListaAnimal* leDNA(char *path) {
             printf("%s\n",dna);
             noAnimal->dnaAnimal = dna;
             insereAnimalNoFim(lista, noAnimal);
+            lista->qtd++;
             noAnimal = NULL;
         } else {
             fseek(file, ftell(file)-1, SEEK_SET);
@@ -206,7 +207,7 @@ ListaAnimal* leDNA(char *path) {
 
 int* vetorDeslocamento(char* virus) {
     // Função prefixo para obter a "tabela" de deslocamentos
-    int* vetorDeslocamento = (int *)malloc(sizeof(int) * strlen(virus));
+    int* vetorDeslocamento = (int *)calloc(strlen(virus),sizeof(int));
     int i = 1; int j = 0;
     
     while(i < strlen(virus)) {
@@ -216,7 +217,7 @@ int* vetorDeslocamento(char* virus) {
             i++;           
         } else {
             if(j != 0) {
-                j = vetorDeslocamento[j-1];
+                j = vetorDeslocamento[j-1];       
             } else {
                 vetorDeslocamento[i] = 0;
                 i++;
@@ -230,8 +231,8 @@ int* vetorDeslocamento(char* virus) {
 void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
     int indiceVirus , indiceAnimal;
     
-    int numIndices = 1, numMaxIndices = 3; // Índices utilizados para o vetor com as posições em que o vírus aparece no DNA
-    int* indicesMatches = (int *)calloc(4,sizeof(int));
+     
+    
 
      // Contador para a quantidade de vírus em um DNA
     
@@ -241,19 +242,24 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
     Virus* auxVirus = listaVirus->ini;
 
     int cont;
-    while(auxVirus->prox != NULL){
-        indiceVirus = 0; indiceAnimal = 0;
-        int numIndices = 1, numMaxIndices = 3; 
+    while(auxVirus != NULL){
+
         char* dnaVirus = auxVirus->dnaVirus;
         int* vetorDesloc = vetorDeslocamento(dnaVirus);
-        int contadorAparicoes = 0; // Contador para a quantidade de vírus em um DNA
+        int contadorAparicoes; // Contador para a quantidade de vírus em um DNA
         cont = 0; 
 
+        
         auxVirus->aparicoes = (int **)calloc(listaAnimal->qtd,sizeof(int *));
 
-        while(auxAnimal->prox != NULL){
+        while(auxAnimal != NULL){
+            indiceVirus = 0; indiceAnimal = 0;
             char* dnaAnimal = auxAnimal->dnaAnimal;
             int tamDNA = strlen(dnaAnimal), tamVirus = strlen(dnaVirus);
+            contadorAparicoes = 0;
+            int* indicesMatches = (int *)calloc(4,sizeof(int));
+                    int numIndices = 1, numMaxIndices = 3; // Índices utilizados para o vetor com as posições em que o vírus aparece no DNA
+            
             
             while(indiceAnimal <= tamDNA) {        
                 if(indiceVirus < tamVirus) {
@@ -284,21 +290,52 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
                     }
                 } 
                 
-                indicesMatches[0] = contadorAparicoes;
-                auxVirus->aparicoes[cont] = indicesMatches;
+            
+            }
+            indicesMatches[0] = contadorAparicoes;
+            auxVirus->aparicoes[cont] = (int *)calloc(numIndices,sizeof(int));
+            for(int i = 0; i < numIndices; i++){
+                auxVirus->aparicoes[cont][i] = indicesMatches[i];
             }
             cont++;
 
-            printf("%s\n [%s] no. de ocorrencias: %d posições: ", auxVirus->identificador, auxAnimal->identificador, indicesMatches[0]);
+          printf("%s\n [%s] no. de ocorrencias: %d posições: ", auxVirus->identificador, auxAnimal->identificador, indicesMatches[0]);
             for(int i = 1; i < numIndices; i++) {
-                printf("%d",indicesMatches[i]);
+                printf("%d ",indicesMatches[i]);
             }
+            printf("\n");
+                
+            auxAnimal = auxAnimal->prox;
+            free(indicesMatches);
         }
 
-        
+       
+       
+
+        auxVirus = auxVirus->prox;
+        auxAnimal = listaAnimal->ini;
     }
 
-
+    auxVirus = listaVirus->ini;
+    
+    int j = 0;
+    int i = 0;
+    int testetranssa = listaAnimal->qtd;
+    printf("qtd animais: %d\n",testetranssa);
+    while(auxVirus != NULL){
+        for( i = 0; i < listaAnimal->qtd;i++){
+            if(auxVirus->aparicoes[i][0] == 0){
+                printf("sem aparições");
+            }else{
+                for( j = 1; j <= auxVirus->aparicoes[i][0];j++){
+                    printf("aparições: %d ",auxVirus->aparicoes[i][j]);
+                }
+            }
+            printf("\n");
+        }
+        
+        auxVirus = auxVirus->prox;
+    }
      // A primeira posição do vetor contém a quantidade de vezes que o vírus apareceu
     free(auxAnimal);
     free(auxVirus);
@@ -310,7 +347,7 @@ void main(int argc, char *argv[]) {
     printf("Olha 1: %s\n", argv[1]);
     printf("Olha 2: %s\n", argv[2]);
 
-    ListaAnimal* animais = leDNA(argv[1]);
+    ListaAnimal* animais = leAnimal(argv[1]);
     ListaVirus*  virus = leVirus(argv[2]);
     kmp(animais,virus); // dps colcoar o le dna e ler virus ai dentro
 

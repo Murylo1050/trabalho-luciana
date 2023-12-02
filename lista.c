@@ -59,7 +59,9 @@ void insereAnimalNoFim(ListaAnimal *listaAnimal, DnaAnimal *noAnimal) {
     if(lista -> ini == NULL) {
         lista -> ini = noAnimal;
         lista -> fim = noAnimal;
+        noAnimal->indice = 1; // mod
     } else {
+        noAnimal->indice = lista->fim->indice + 1; // mod
         lista -> fim -> prox = noAnimal;
         lista -> fim = noAnimal;
     }
@@ -76,6 +78,16 @@ void insereVirusNoFim(ListaVirus *listaVirus, Virus* noVirus) {
         lista -> fim = noVirus;
     }
 }
+
+DnaAnimal* buscaIndice(ListaAnimal *listaAnimal, int indice) {
+    DnaAnimal *auxAnimal = listaAnimal->ini;
+
+    while(auxAnimal && auxAnimal->indice != indice) 
+        auxAnimal = auxAnimal->prox;
+    
+    return auxAnimal;
+}
+
 /*
 nomeOcorrencia pegaDNA(){
     criar no ocorrencia
