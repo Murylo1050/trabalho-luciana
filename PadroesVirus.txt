@@ -2,4 +2,6 @@
 GGAGA
 >variante C4.3
 AAAG
+>FazendoL L13.13
+A
 >EOF
