@@ -1,3 +1,11 @@
+/*
+    Número do grupo: 09
+    Nome dos integrantes: Nathan Rodrigues de Souza Monteiro, 
+                          Lucas Emanuel Lopes Tavares, 
+                          Isadora Fernandes Santos, 
+                          Murylo Dias de Oliveira Rubim
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista.h"

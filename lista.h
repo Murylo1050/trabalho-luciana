@@ -1,3 +1,11 @@
+/*
+    Número do grupo: 09
+    Nome dos integrantes: Nathan Rodrigues de Souza Monteiro, 
+                          Lucas Emanuel Lopes Tavares, 
+                          Isadora Fernandes Santos, 
+                          Murylo Dias de Oliveira Rubim
+*/
+
 #ifndef INCLUDED_LISTA_H
 #define INCLUDED_LISTA_H
 
