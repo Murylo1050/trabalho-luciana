@@ -4,9 +4,6 @@ FLAGS = -Wall -Wextra -Werror
 all: teste # Target responsável por chamar o target teste, 
 	./main # e em seguita executa o executável main.
 
-debug: 
-	$(CC) -g main.c lista.c
-
 teste: main.o lista.o          			  # O teste chama os targets main.o e lista.o
 	$(CC) $(FLAGS) -o main main.o lista.o # compila os objetos main.o e lista.o 
 					           			  # e os transforma em um executável chamado main
