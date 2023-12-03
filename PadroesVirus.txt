@@ -2,6 +2,4 @@
 GGAGA
 >variante C4.3
 AAAG
->FAZL LU.13
-A
 >EOF
