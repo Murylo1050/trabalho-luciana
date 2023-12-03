@@ -70,7 +70,7 @@ ListaAnimal* leAnimal(char *path) {
             //Armazena a linha referente ao código/nome do animal dentro do campo identificador do no
            
             fscanf(file, "%m[^\n]", &temp);
-            dna = (char *)calloc(70,sizeof(char));
+            dna = (char *)calloc(71,sizeof(char));
             
             if(strcmp(temp,">EOF") == 0 ) {
                 free(temp);
@@ -98,7 +98,7 @@ ListaAnimal* leAnimal(char *path) {
                     fscanf(file, "%m[^\n]", &temp);
                     dna = strcpy(dna, temp);
                 } else {
-                    dna = (char *)realloc(dna,(strlen(dna) * sizeof(char)) + (70 * sizeof(char)) );
+                    dna = (char *)realloc(dna,(strlen(dna) * sizeof(char)) + (71 * sizeof(char)) );
                     fscanf(file, "%m[^\n]", &temp);
                     strcat(dna,temp);
                 }                
@@ -169,8 +169,8 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
             char* dnaAnimal = auxAnimal->dnaAnimal;
             int tamDNA = strlen(dnaAnimal), tamVirus = strlen(dnaVirus);
             contadorAparicoes = 0;
-            int* indicesMatches = (int *)calloc(4,sizeof(int));
-            int numIndices = 1, numMaxIndices = 3; // Índices utilizados para o vetor com as posições em que o vírus aparece no DNA
+            int numIndices = 1, numMaxIndices = 4; // Índices utilizados para o vetor com as posições em que o vírus aparece no DNA
+            int* indicesMatches = (int *)calloc(5,sizeof(int));
                     
             // Este é o kmp de fato
             while(indiceAnimal <= tamDNA) {        
@@ -185,14 +185,14 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
                         }
                     }
                 } else {          
-                    if(numIndices <= numMaxIndices) { 
+                    if(numIndices < numMaxIndices) { 
                         indicesMatches[numIndices] = indiceAnimal - tamVirus;               
                         numIndices++;
                         indiceVirus = 0;
                         
                         contadorAparicoes++;
                     } else {
-                        numMaxIndices += 3;
+                        numMaxIndices += 4;
                         indicesMatches = (int*)realloc(indicesMatches, numMaxIndices * sizeof(int));
                         indicesMatches[numIndices] = indiceAnimal - tamVirus;
                         numIndices++;
