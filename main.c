@@ -94,13 +94,13 @@ ListaVirus* leVirus(char* path){
             
             if( strcmp(temp,">EOF") == 0 ){
                 free(temp);
-                printf("Deu certo krl");
+                // printf("Deu certo krl");
                 return lista;
             }else{
                 noVirus = criaNoVirus();
                 noVirus->identificador = (char *)calloc(71,sizeof(char));
                 strcpy(noVirus->identificador,temp);
-                printf("%s\n", noVirus->identificador);
+                // printf("%s\n", noVirus->identificador);
                 free(temp);
             }
             
@@ -115,7 +115,7 @@ ListaVirus* leVirus(char* path){
 
                 //fseek(file, ftell(file), SEEK_SET);
                 fscanf(file, "%m[^\n]", &noVirus->dnaVirus);
-                printf("%s\n", noVirus->dnaVirus);
+                // printf("%s\n", noVirus->dnaVirus);
                 
             }    
         }
@@ -149,20 +149,20 @@ ListaAnimal* leAnimal(char *path) {
         if(teste == '>') {
             //Armazena a linha referente ao código/nome do animal no ponteiro *animal
            
-            //fseek(file, ftell(file)-1, SEEK_SET);
+            fseek(file, ftell(file)-1, SEEK_SET);
             fscanf(file, "%m[^\n]", &temp);
             dna = (char *)calloc(70,sizeof(char));
             
             if(strcmp(temp,">EOF") == 0 ) {
                 free(temp);
-                printf("Deu certo krl");
+                // printf("Deu certo");
                 return lista;
             } else {
                 noAnimal = criaNoDnaAnimal();
 
                 noAnimal->identificador = (char *)calloc(71,sizeof(char));
                 strcpy(noAnimal->identificador,temp);
-                printf("%s\n", noAnimal->identificador);
+                // printf("%s\n", noAnimal->identificador);
                 free(temp);
             } 
         } else {
@@ -189,7 +189,7 @@ ListaAnimal* leAnimal(char *path) {
         teste = fgetc(file);   
 
         if(teste == '>') {
-            printf("%s\n",dna);
+            // printf("%s\n",dna);
             noAnimal->dnaAnimal = dna;
             insereAnimalNoFim(lista, noAnimal);
             lista->qtd++;
@@ -240,7 +240,6 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
 
     DnaAnimal* auxAnimal = listaAnimal->ini;
     Virus* auxVirus = listaVirus->ini;
-
     int cont;
     while(auxVirus != NULL){
 
@@ -299,19 +298,26 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
             }
             cont++;
 
-          printf("%s\n [%s] no. de ocorrencias: %d posições: ", auxVirus->identificador, auxAnimal->identificador, indicesMatches[0]);
-            for(int i = 1; i < numIndices; i++) {
-                printf("%d ",indicesMatches[i]);
+            // if(!auxVirus->animal) {
+            //     auxVirus->animal = (DnaAnimal*)calloc(cont, sizeof(DnaAnimal));
+            // }
+            // else {
+            //     auxVirus->animal = (DnaAnimal*)realloc(auxVirus->animal, cont * sizeof(DnaAnimal));
+            // }
+
+            // auxVirus->animal[cont] = *(auxAnimal);
+            // printf("\n\n\nAqui ó: %s\n\n\n", auxVirus->animal[cont]->identificador);
+            if(indicesMatches[0] > 0) {
+                printf("%s\n [%s] no. de ocorrencias: %d posições: ", auxVirus->identificador, auxAnimal->identificador, indicesMatches[0]);
+                for(int i = 1; i < numIndices; i++) {
+                    printf("%d ",indicesMatches[i]);
+                }
+                printf("\n");
             }
-            printf("\n");
                 
             auxAnimal = auxAnimal->prox;
             free(indicesMatches);
         }
-
-       
-       
-
         auxVirus = auxVirus->prox;
         auxAnimal = listaAnimal->ini;
     }
@@ -325,10 +331,10 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
     while(auxVirus != NULL){
         for( i = 0; i < listaAnimal->qtd;i++){
             if(auxVirus->aparicoes[i][0] == 0){
-                printf("sem aparições");
+                // printf("sem aparições");
             }else{
                 for( j = 1; j <= auxVirus->aparicoes[i][0];j++){
-                    printf("aparições: %d ",auxVirus->aparicoes[i][j]);
+                    // printf("aparições: %d ",auxVirus->aparicoes[i][j]);
                 }
             }
             printf("\n");
@@ -344,8 +350,8 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
 void main(int argc, char *argv[]) {
 
 
-    printf("Olha 1: %s\n", argv[1]);
-    printf("Olha 2: %s\n", argv[2]);
+    // printf("Olha 1: %s\n", argv[1]);
+    // printf("Olha 2: %s\n", argv[2]);
 
     ListaAnimal* animais = leAnimal(argv[1]);
     ListaVirus*  virus = leVirus(argv[2]);

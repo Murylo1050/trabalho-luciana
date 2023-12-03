@@ -21,6 +21,7 @@ typedef struct virus {
     char* identificador;
     char* dnaVirus;
     int** aparicoes;
+    DnaAnimal* animal;
 } Virus;
 
 typedef struct listaVirus {
