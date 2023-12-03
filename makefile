@@ -1,11 +1,9 @@
 FLAGS = -Wall -Wextra -Werror
 
 all: teste 
-	# rm -r main *.o #gambiarra pode apagar essa linha
 
 in: teste
-	./main input/dna.txt input/virus.txt
-	rm -r main *.o #gambiarra pode apagar essa linha
+	./main input/dna.txt input/virus.txt 
 
 debug: 
 	gcc -g main.c lista.c
