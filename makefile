@@ -1,21 +1,19 @@
+CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
-all: teste 
+all: teste # Target responsável por chamar o target teste, 
+	./main # e em seguita executar o executável main.
 
-in: teste
-	./main input/dna.txt input/virus.txt 
-
-debug: 
-	gcc -g main.c lista.c
-
-teste: main.o lista.o
-	gcc -o main main.o lista.o
+teste: main.o lista.o          			# O teste chama os targets main.o e lista.o
+	$(CC) $(FLAGS) -o main main.o lista.o  # compila os objetos main.o e lista.o 
+					           			# e os transforma em um executável chamado main
 
 main.o: main.c lista.h
-	gcc -c main.c 
+	$(CC) $(FLAGS) -c main.c # compila o main.c 
 
 lista.o: lista.c lista.h	
-	gcc -c lista.c
+	$(CC) $(FLAGS) -c lista.c # compila a lista.c
 
 clean: 
-	rm -r main *.o *.out
+	rm -r main *.o *.out # remove do respectivo diretório todos os .o e .out 
+						 # de forma recursiva
