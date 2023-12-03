@@ -323,7 +323,10 @@ void kmp(ListaAnimal* listaAnimal, ListaVirus* listaVirus) {
     int testetranssa = listaAnimal->qtd;
     printf("qtd animais: %d\n",testetranssa);
     while(auxVirus != NULL){
+        printf("%s",auxVirus->identificador);
+        
         for( i = 0; i < listaAnimal->qtd;i++){
+            
             if(auxVirus->aparicoes[i][0] == 0){
                 printf("sem aparições");
             }else{
