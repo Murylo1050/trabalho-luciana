@@ -2,6 +2,7 @@
 GGAGA
 >variante C4.3
 AAAG
+<<<<<<< HEAD
 >variante teste.1
 A
 >variante teste.2
@@ -111,3 +112,6 @@ TCACGTCT
 >variante teste.54
 ATCTATGG
 >EOF
+=======
+>EOF
+>>>>>>> cb6fdb6ddce846463d7f3888d325f88f6d029cad
