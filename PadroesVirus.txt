@@ -2,4 +2,112 @@
 GGAGA
 >variante C4.3
 AAAG
+>variante teste.1
+A
+>variante teste.2
+AA
+>variante teste.3
+AGATAT
+>variante teste.4
+ACCGCAG
+>variante teste.5
+ACCATA
+>variante teste.6
+TAGG
+>variante teste.7
+CGTGA
+>variante teste.8
+TTTGGAC
+>variante teste.9
+TCGAT
+>variante teste.10
+AAATGTC
+>variante teste.11
+AAAC
+>variante teste.12
+TTGA
+>variante teste.13
+AAGGGCT
+>variante teste.14
+AAAACG
+>variante teste.15
+CTGTGGAG
+>variante teste.16
+GGA
+>variante teste.17
+CCGTCTTG
+>variante teste.18
+TTATAATAT
+>variante teste.19
+TAC
+>variante teste.20
+GATCGACA
+>variante teste.21
+GTATTC
+>variante teste.22
+AGCAGGTC
+>variante teste.23
+GGGAGCGC
+>variante teste.24
+TGTAGTTAT
+>variante teste.25
+AGG
+>variante teste.26
+AGGGACAT
+>variante teste.27
+AGAATT
+>variante teste.28
+CAAAA
+>variante teste.29
+GTTCCAAAA
+>variante teste.30
+TGCACTAACC
+>variante teste.31
+CGTAATCGT
+>variante teste.32
+TACTCAGCGC
+>variante teste.33
+GTTGCCCGA
+>variante teste.34
+ATCAGGATC
+>variante teste.35
+AGCAACTTCC
+>variante teste.36
+GCCTGCCGT
+>variante teste.37
+TGCATCAAA
+>variante teste.38
+AAACATGA
+>variante teste.39
+TGTTGTGTT
+>variante teste.40
+TCTACGC
+>variante teste.41
+GCGTCATACC
+>variante teste.42
+GCTGGG
+>variante teste.43
+TGCGGCGC
+>variante teste.44
+GGTAACGC
+>variante teste.45
+CGCGAAC
+>variante teste.46
+TGTCTCGG
+>variante teste.47
+GCGGCATG
+>variante teste.48
+ACACC
+>variante teste.49
+GTGGGTG
+>variante teste.50
+TTCAGATA
+>variante teste.51
+TGACGGCA
+>variante teste.52
+TCCTCAAC
+>variante teste.53
+TCACGTCT
+>variante teste.54
+ATCTATGG
 >EOF
